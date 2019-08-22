@@ -24,7 +24,6 @@ persist.dirac.acs.storeSettings=1 \
 persist.vendor.audio.hw.binder.size_kbyte=1024 \
 persist.vendor.audio.speaker.prot.enable=false \
 ro.audio.soundfx.dirac=true \
-ro.af.client_heap_size_kbyte=7168 \
 ro.vendor.audio.sdk.ssr=false \
 vendor.audio.dolby.ds2.enabled=false \
 vendor.audio.dolby.ds2.hardbypass=false \
