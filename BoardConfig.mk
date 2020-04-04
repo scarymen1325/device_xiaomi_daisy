@@ -161,6 +161,9 @@ HWUI_COMPILE_FOR_PERF := true
 TARGET_USES_MEDIA_EXTENSIONS := true
 TARGET_PROVIDES_LIBPLATFORMCONFIG := true
 
+# Power
+TARGET_RPM_SYSTEM_STAT := /d/rpm_stats
+
 # Vendor init
 TARGET_INIT_VENDOR_LIB := //$(DEVICE_PATH):libinit_sakura
 TARGET_RECOVERY_DEVICE_MODULES := libinit_sakura
@@ -178,10 +181,6 @@ BOARD_VENDORIMAGE_PARTITION_SIZE := 1073741824
 
 # Peripheral manager
 TARGET_PER_MGR_ENABLED := true
-
-# Power
-TARGET_HAS_NO_WLAN_STATS := true
-TARGET_TAP_TO_WAKE_NODE := "/proc/tp_wakeup_gesture"
 
 # Qualcomm
 BOARD_USES_QCOM_HARDWARE := true
