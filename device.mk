@@ -5,7 +5,7 @@
 #
 
 # Get non-open-source specific aspects
-$(call inherit-product, vendor/xiaomi/sakura/sakura-vendor.mk)
+$(call inherit-product, vendor/xiaomi/daisy/daisy-vendor.mk)
 
 # Setup dalvik vm configs
 $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
@@ -13,6 +13,22 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 # Screen density
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
+
+# A/B
+AB_OTA_UPDATER := true
+AB_OTA_PARTITIONS += \
+    boot \
+    system \
+    vendor
+
+AB_OTA_POSTINSTALL_CONFIG += \
+    RUN_POSTINSTALL_system=true \
+    POSTINSTALL_PATH_system=system/bin/otapreopt_script \
+    FILESYSTEM_TYPE_system=ext4 \
+    POSTINSTALL_OPTIONAL_system=true
+
+PRODUCT_PACKAGES += \
+    otapreopt_script
 
 # Boot animation
 TARGET_SCREEN_HEIGHT := 2280
@@ -243,7 +259,7 @@ PRODUCT_COPY_FILES += \
 
 # Lights
 PRODUCT_PACKAGES += \
-    android.hardware.light@2.0-service.sakura
+    android.hardware.light@2.0-service.daisy
 
 # Media
 PRODUCT_COPY_FILES += \
@@ -314,7 +330,7 @@ PRODUCT_PACKAGES += \
     init.qcom.sh \
     init.qcom.usb.rc \
     init.target.rc \
-    init.sakura.rc \
+    init.daisy.rc \
     move_time_data.sh \
     move_wifi_data.sh \
     ueventd.qcom.rc
@@ -361,7 +377,7 @@ PRODUCT_COPY_FILES += \
 
 # Soong
 PRODUCT_SOONG_NAMESPACES += \
-    device/xiaomi/sakura
+    device/xiaomi/daisy
 
 # TextClassifier smart selection model files
 PRODUCT_PACKAGES += \
@@ -382,6 +398,11 @@ PRODUCT_PACKAGES += \
 
 # Vendor SPL
 VENDOR_SECURITY_PATCH = $(PLATFORM_SECURITY_PATCH)
+
+# Verity
+PRODUCT_SYSTEM_VERITY_PARTITION := /dev/block/platform/soc/7824900.sdhci/by-name/system
+PRODUCT_VENDOR_VERITY_PARTITION := /dev/block/platform/soc/7824900.sdhci/by-name/vendor
+$(call inherit-product, build/target/product/verity.mk)
 
 # Vibrator
 PRODUCT_PACKAGES += \

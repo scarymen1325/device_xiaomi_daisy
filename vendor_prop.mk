@@ -85,7 +85,7 @@ persist.vendor.qti.telephony.vt_cam_interface=2 \
 vidc.enc.dcvs.extra-buff-count=2 \
 persist.vendor.camera.HAL3.enabled=1 \
 vendor.camera.lowpower.record.enable=1 \
-vendor.camera.hal1.packagelist=com.skype.raider,com.google.android.talk
+vendor.camera.hal1.packagelist=com.skype.raider,com.whatsapp,com.android.camera2,com.instagram.android
 
 # Cne
 PRODUCT_PROPERTY_OVERRIDES += \
