@@ -1,6 +1,7 @@
 # Safetynet bypass
 # Inspired in magisk source code, by topjohnwu
 # Ported to ramdisk by jhenrique09
+#
 
 on property:sys.boot_completed=1
    # selinux nodes, hide permissive state
