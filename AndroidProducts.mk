@@ -5,4 +5,4 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/pixys_daisy.mk
+    $(LOCAL_DIR)/aosp_daisy.mk
