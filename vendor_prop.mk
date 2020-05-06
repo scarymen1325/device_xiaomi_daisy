@@ -64,28 +64,31 @@ sys.vendor.shutdown.waittime=500
 
 # Camera
 PRODUCT_PROPERTY_OVERRIDES += \
-persist.vendor.camera.display.lmax=1280x720 \
-persist.vendor.camera.display.umax=1920x1080 \
-camera.lowpower.record.enable=1 \
-media.camera.ts.monotonic=1 \
 dalvik.vm.heapstartsize=16m \
 dalvik.vm.heapgrowthlimit=256m \
 dalvik.vm.heapsize=512m \
 dalvik.vm.heaptargetutilization=0.75 \
 dalvik.vm.heapminfree=4m \
 dalvik.vm.heapmaxfree=8m \
-persist.camera.CDS=off \
-persist.camera.video.CDS=off \
-persist.camera.eis.enable=1 \
-persist.camera.dual.camera=0 \
-persist.camera.gyro.disable=0 \
-persist.camera.isp.clock.optmz=0 \
-persist.camera.stats.test=5 \
-persist.vendor.qti.telephony.vt_cam_interface=2 \
-vidc.enc.dcvs.extra-buff-count=2 \
+persist.vendor.camera.display.lmax=1280x720 \
+persist.vendor.camera.display.umax=1920x1080 \
+vendor.camera.lowpower.record.enable=1 \
+vendor.media.camera.ts.monotonic=1 \
+persist.vendor.camera.CDS=off \
+persist.vendor.camera.video.CDS=off \
+persist.vendor.camera.eis.enable=1 \
+persist.vendor.camera.dual.camera=0 \
+persist.vendor.camera.gyro.disable=0 \
+persist.vendor.camera.isp.clock.optmz=0 \
+persist.vendor.camera.stats.test=5 \
+persist.vendor.qti.telephony.vt_cam_interface=1 \
+vendor.vidc.enc.dcvs.extra-buff-count=2 \
 persist.vendor.camera.HAL3.enabled=1 \
 vendor.camera.lowpower.record.enable=1 \
-vendor.camera.hal1.packagelist=com.skype.raider,com.whatsapp,com.android.camera2,com.instagram.android
+vendor.camera.aux.packagelist=org.codeaurora.snapcam,com.android.camera,com.huaqin.factory,org.lineageos.snap \
+vendor.camera.aux.packagelist2=com.android.systemui,com.huaqin.cameraautotest,com.huaqin.runtime \
+vendor.camera.hal1.packagelist=com.skype.raider,com.whatsapp,com.android.camera2,com.instagram.android  \
+vendor.camera.aux.packagelist=org.codeaurora.snapcam,com.android.camera,com.huaqin.factory,com.mi.AutoTest
 
 # Cne
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -113,23 +116,37 @@ persist.dirac.poolsize=3
 
 # Display
 PRODUCT_PROPERTY_OVERRIDES += \
+debug.egl.hw=1 \
 debug.enable.sglscale=1 \
 debug.gralloc.enable_fb_ubwc=1 \
+debug.mdpcomp.logs=0 \
+debug.sf.hw=1 \
+debug.sf.latch_unsignaled=1 \
 debug.sf.recomputecrop=0 \
-debug.sf.enable_gl_backpressure=1 \
 dev.pm.dyn_samplingrate=1 \
+persist.debug.wfd.enable=1 \
 persist.demo.hdmirotationlock=false \
 persist.hwc.enable_vds=1 \
 persist.hwc.mdpcomp.enable=true \
 ro.opengles.version=196610 \
 ro.qualcomm.cabl=0 \
-debug.sdm.support_writeback=0 \
+ro.sf.lcd_density=420 \
 ro.vendor.display.cabl=2 \
 sdm.debug.disable_skip_validate=1 \
-vendor.display.enable_default_color_mode=1 \
 vendor.display.disable_skip_validate=1 \
+vendor.display.enable_default_color_mode=1 \
 vendor.gralloc.enable_fb_ubwc=1 \
+ro.surface_flinger.protected_contents=true \
+ro.surface_flinger.use_smart_90_for_video=true \
+ro.surface_flinger.set_display_power_timer_ms=10000 \
+ro.surface_flinger.set_touch_timer_ms=5000 \
+ro.surface_flinger.set_idle_timer_ms=9000 \
+debug.sf.early_phase_offset_ns=1500000 \
+debug.sf.early_app_phase_offset_ns=1500000 \
+debug.sf.early_gl_phase_offset_ns=3000000 \
+debug.sf.early_gl_app_phase_offset_ns=15000000 \
 persist.vendor.max.brightness=475
+
 
 # DRM
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -284,7 +301,7 @@ net.tcp.2g_init_rwnd=10
 
 # UI
 PRODUCT_PROPERTY_OVERRIDES += \
-sys.use_fifo_ui=1
+sys.use_fifo_ui=0
 
 # Usb
 PRODUCT_PROPERTY_OVERRIDES += \
