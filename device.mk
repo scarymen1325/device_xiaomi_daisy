@@ -8,7 +8,7 @@
 $(call inherit-product, vendor/xiaomi/daisy/daisy-vendor.mk)
 
 # Setup dalvik vm configs
-$(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
+$(call inherit-product, frameworks/native/build/phone-xhdpi-4096-dalvik-heap.mk)
 
 # Screen density
 PRODUCT_AAPT_CONFIG := normal
@@ -113,6 +113,7 @@ PRODUCT_PACKAGES += \
     android.hardware.audio@2.0-service \
     android.hardware.audio.effect@5.0-impl \
     android.hardware.soundtrigger@2.2-impl \
+    audio.primary.msm8953 \
     audio.r_submix.default \
     audio.usb.default \
     libaudioroute \
@@ -121,7 +122,8 @@ PRODUCT_PACKAGES += \
     libqcomvisualizer \
     libqcomvoiceprocessing \
     libqcompostprocbundle \
-    libvolumelistener
+    libvolumelistener \
+    tinymix
 
 # A2DP
 PRODUCT_PACKAGES += \
@@ -165,7 +167,8 @@ PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl \
     android.hardware.camera.provider@2.4-service \
     android.hardware.camera.provider@2.5 \
-    vendor.qti.hardware.camera.device@1.0 
+    vendor.qti.hardware.camera.device@1.0 \
+    Snap
 
 # Codec2
 PRODUCT_PACKAGES += \
@@ -228,6 +231,7 @@ PRODUCT_PACKAGES += \
 
 # FM
 PRODUCT_PACKAGES += \
+    FM2 \
     libqcomfm_jni \
     qcom.fmradio
 
@@ -243,8 +247,7 @@ PRODUCT_COPY_FILES += \
 # Healthd
 PRODUCT_PACKAGES += \
     android.hardware.health@2.0-impl \
-    android.hardware.health@2.0-service \
-    chargeonlymode
+    android.hardware.health@2.0-service
 
 # HW crypto
 PRODUCT_PACKAGES += \
@@ -315,6 +318,10 @@ PRODUCT_PACKAGES += \
     MatLog \
     Phonograph
 
+# LiveDisplay
+PRODUCT_PACKAGES += \
+    vendor.lineage.livedisplay@2.0-service-sdm
+
 # OMX
 PRODUCT_PACKAGES += \
     libc2dcolorconvert \
@@ -357,12 +364,11 @@ PRODUCT_PACKAGES += \
     init.qcom.early_boot.sh \
     init.qcom.post_boot.sh \
     init.qcom.rc \
-	init.safailnet.rc \
     init.recovery.qcom.rc \
     init.qcom.sh \
     init.qcom.usb.rc \
     init.target.rc \
-    init.sakura.rc \
+    init.daisy.rc \
     move_time_data.sh \
     move_wifi_data.sh \
     ueventd.qcom.rc
@@ -424,6 +430,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/thermal-engine.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-engine.conf
 
+# Tracing HAL
+PRODUCT_PACKAGES += \
+    android.hardware.atrace@1.0-service.pixel
+
 # USB HAL
 PRODUCT_PACKAGES += \
     android.hardware.usb@1.0-service.basic
@@ -471,6 +481,15 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/WCNSS_cfg.dat:$(TARGET_COPY_OUT_SYSTEM)/etc/firmware/wlan/prima/WCNSS_cfg.dat \
     $(LOCAL_PATH)/wifi/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/WCNSS_qcom_cfg.ini
 
-# Wi-Fi Display
+# WFD
+PRODUCT_PACKAGES += \
+    libnl \
+    libwfdaac
+
 PRODUCT_BOOT_JARS += \
     WfdCommon
+
+# Verity
+#PRODUCT_SYSTEM_VERITY_PARTITION := /dev/block/platform/soc/7824900.sdhci/by-name/system
+#PRODUCT_SYSTEM_VERITY_PARTITION := /dev/block/platform/soc/7824900.sdhci/by-name/vendor
+#$(call inherit-product, build/target/product/verity.mk)

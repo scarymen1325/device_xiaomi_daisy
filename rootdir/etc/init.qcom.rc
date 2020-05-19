@@ -39,6 +39,8 @@ on early-init
 on init
     # ZRAM setup
     write /sys/block/zram0/comp_algorithm lz4
+    write /sys/block/zram0/disksize 2147483648
+    write /sys/block/zram0/max_comp_streams 8
     write /proc/sys/vm/page-cluster 0
 
 on post-fs
@@ -590,7 +592,7 @@ service vendor.ril-daemon2 /vendor/bin/hw/rild -c 2
     group radio cache inet misc audio sdcard_r sdcard_rw diag log
     capabilities BLOCK_SUSPEND NET_ADMIN NET_RAW
 
-service charger /sbin/chargeonlymode
+service charger /system/bin/charger
     class charger
     group system graphics
     seclabel u:r:healthd:s0
@@ -643,11 +645,6 @@ service vendor.power_off_alarm /vendor/bin/power_off_alarm
     oneshot
 
 on property:dev.bootcomplete=1
-    setprop sys.io.scheduler "bfq"
-    
-    swapon_all /vendor/etc/fstab.qcom
-
-# XiaomiParts
     chown system system /sys/devices/virtual/timed_output/vibrator/vtg_level
     chmod 0660 /sys/devices/virtual/timed_output/vibrator/vtg_level
     chown system system /sys/module/hall/parameters/hall_toggle
@@ -671,4 +668,4 @@ on property:dev.bootcomplete=1
 
  # USB Fastcharge
     chown system system /sys/kernel/fast_charge/force_fast_charge
-    chmod 0660 /sys/kernel/fast_charge/force_fast_charge     
+    chmod 0660 /sys/kernel/fast_charge/force_fast_charge 
